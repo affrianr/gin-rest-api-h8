@@ -2,13 +2,14 @@ package usecase
 
 import (
 	"github.com/affrianr/gin-rest-api-h8/domain"
+	"github.com/affrianr/gin-rest-api-h8/repository"
 )
 
 type OrderUsecase struct {
-	repo domain.OrderRepository
+	repo repository.OrderRepository
 }
 
-func NewOrderUseCase(repo domain.OrderRepository) *OrderUsecase {
+func NewOrderUseCase(repo repository.OrderRepository) *OrderUsecase {
     return &OrderUsecase{repo}
 }
 

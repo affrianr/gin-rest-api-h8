@@ -2,13 +2,14 @@ package usecase
 
 import (
 	"github.com/affrianr/gin-rest-api-h8/domain"
+	"github.com/affrianr/gin-rest-api-h8/repository"
 )
 
 type ItemUsecase struct {
-	repo domain.ItemRepository
+	repo repository.ItemRepository
 }
 
-func NewItemUseCase(repo domain.ItemRepository) *ItemUsecase {
+func NewItemUseCase(repo repository.ItemRepository) *ItemUsecase {
     return &ItemUsecase{repo}
 }
 

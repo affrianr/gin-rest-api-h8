@@ -10,11 +10,3 @@ type Order struct {
 	UpdatedAt    time.Time `json:"updated_at"`
 	Items        []Item    `json:"items" gorm:"foreignKey:OrderID"`
 }
-
-type OrderRepository interface {
-    Create(order *Order) error
-    GetByID(id uint) (*Order, error)
-    Update(order *Order) error
-    Delete(id uint) error
-    List() ([]Order, error)
-}

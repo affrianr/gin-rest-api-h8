@@ -12,10 +12,3 @@ type Item struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
-type ItemRepository interface {
-    Create(item *Item) error
-    GetByID(id uint) (*Item, error)
-    Update(item *Item) error
-    Delete(id uint) error
-    List() ([]Item, error)
-}
