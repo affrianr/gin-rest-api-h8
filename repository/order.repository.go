@@ -33,7 +33,27 @@ func (r *postgresOrderRepository) GetByID(id uint) (*domain.Order, error) {
 }
 
 func (r *postgresOrderRepository) Update(order *domain.Order) error {
-    return r.db.Save(order).Error
+
+    return r.db.Transaction(func(tx *gorm.DB) error {
+        if err := tx.Save(order).Error; err != nil {
+            return err
+        }
+
+        if err := tx.Where("order_id = ?", order.ID).Delete(&domain.Item{}).Error; err != nil {
+            return err
+        }
+
+        items := order.Items
+
+        for i := range items {
+            items[i].ID = order.ID
+            if err := tx.Create(&items[i]).Error; err != nil {
+                return err
+            }
+        }
+
+        return nil
+    })
 }
 
 func (r *postgresOrderRepository) Delete(id uint) error {
