@@ -8,5 +8,5 @@ type Order struct {
 	OrderedAt    time.Time `json:"ordered_at"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
-	Items        []Item    `json:"items" gorm:"foreignKey:OrderID"`
+	Items        []Item    `json:"items" gorm:"foreignKey:OrderID;constraint:OnDelete:CASCADE"`
 }
